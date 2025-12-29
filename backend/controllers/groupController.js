@@ -1,0 +1,86 @@
+const Group = require("../models/group");
+exports.createGroup = async(req,res)=>{
+  try{
+    const{ groupName,userId} = req.body;
+    const group=new Group({
+      groupName,createdBy:userId,members:[]
+    });
+    await group.save();
+    res.json({success:true,
+       message: "Group created successfully", group});
+  } catch (error){
+    res.json({success:false, message: "Error creating group"});
+  }
+};
+// exports.addMembers= async(req,res) =>{
+//   console.log("ADD MEMBERS HIT",req.body);
+//   try{
+//     const{groupId,name,email,finalize}=req.body;
+//     if(members.length<4){
+//       return res.json({success:false, message:"Add at least 4 members"});
+//     }
+//     const group = await Group.findById(groupId);
+//     group.members = members;
+//     await group.save();
+//     res.json({success:true,group});
+//   }catch(err){
+//     res.json({sucess:false,message:err.message});
+//   }
+// }
+exports.addMembers = async (req, res) => {
+  try {
+    const { groupId, name, email, finalize } = req.body;
+
+        
+    if (!groupId) return res.json({ success: false, message: "Group ID missing" });
+const group = await Group.findById(groupId);
+ if (!group) return res.json({ success: false, message: "Group not found" });
+    // If finalize is true, just check members count
+    if(!Array.isArray(group.members)) {group.members=[];}
+    if (finalize) {
+      if (!group.members || group.members.length < 4) {
+        return res.json({
+          success: false,
+          message: "Sorry, group can't be finalized. Add at least 4 members",
+        });
+      }
+      return res.json({ success: true, message: "Group finalized successfully" });
+    }
+
+    // Regular add member flow
+    if (!name || !email) {
+      return res.json({ success: false, message: "Missing name or email" });
+    }
+
+    // Avoid duplicates
+    if (group.members.find((m) => m.email === email)) {
+      return res.json({ success: false, message: "Member already added" });
+    }
+
+    group.members.push({ name, email });
+    await group.save();
+
+    res.json({ success: true, membersCount: group.members.length });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+// exports.finalizeGroup = async (req, res) => {
+//   console.log("FINALIZE HIT", req.body);
+
+//   const group = await Group.findById(req.body.groupId);
+
+//   if (!group) {
+//     return res.json({ success: false, message: "Group not found" });
+//   }
+
+//   if (group.members.length < 4) {
+//     return res.json({
+//       success: false,
+//       message: "Please add at least 4 members",
+//     });
+//   }
+
+//   res.json({ success: true });
+// };
