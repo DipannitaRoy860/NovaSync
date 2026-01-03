@@ -12,21 +12,7 @@ exports.createGroup = async(req,res)=>{
     res.json({success:false, message: "Error creating group"});
   }
 };
-// exports.addMembers= async(req,res) =>{
-//   console.log("ADD MEMBERS HIT",req.body);
-//   try{
-//     const{groupId,name,email,finalize}=req.body;
-//     if(members.length<4){
-//       return res.json({success:false, message:"Add at least 4 members"});
-//     }
-//     const group = await Group.findById(groupId);
-//     group.members = members;
-//     await group.save();
-//     res.json({success:true,group});
-//   }catch(err){
-//     res.json({sucess:false,message:err.message});
-//   }
-// }
+
 exports.addMembers = async (req, res) => {
   try {
     const { groupId, name, email, finalize } = req.body;
@@ -83,21 +69,3 @@ exports.getGroup = async (req, res) => {
   }
 };
 
-// exports.finalizeGroup = async (req, res) => {
-//   console.log("FINALIZE HIT", req.body);
-
-//   const group = await Group.findById(req.body.groupId);
-
-//   if (!group) {
-//     return res.json({ success: false, message: "Group not found" });
-//   }
-
-//   if (group.members.length < 4) {
-//     return res.json({
-//       success: false,
-//       message: "Please add at least 4 members",
-//     });
-//   }
-
-//   res.json({ success: true });
-// };

@@ -27,6 +27,9 @@ required:true,
     {
     name: String,
     share: Number,
+    paid: {
+      type: Number, default: 0
+    }
   },
 ],
   //participants: [{name: String, share: Number}],

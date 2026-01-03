@@ -19,59 +19,8 @@
 //   )
 // }
 
-//       body: JSON.stringify({
-//         groupId,
-//         title,
-//         amount,
-//       }),
-//     });
 
-//     setTitle("");
-//     setAmount("");
-//   };
 
-//   const viewLedger = async () => {
-//     const res = await fetch(
-//       `http://localhost:5000/api/expenses/ledger/${groupId}`
-//     );
-//     const data = await res.json();
-//     setLedger(data.expenses);
-//   };
-
-//   return (
-//     <div className="page">
-//       <div className="card">
-//       <h3>Add Expense</h3>
-
-//       <input
-//         placeholder="Title"
-//         value={title}
-//         onChange={(e) => setTitle(e.target.value)}
-//       />
-
-//       <input
-//         placeholder="Amount"
-//         value={amount}
-//         onChange={(e) => setAmount(e.target.value)}
-//       />
-
-//       <button onClick={addExpense}>Add Expense</button>
-
-//       <button onClick={viewLedger}>Ledger</button>
-
-//       <ul>
-//         {ledger.map((e) => (
-//           <li key={e._id}>
-//             {e.title} - ₹{e.amount}
-//           </li>
-//         ))}
-//       </ul>
-
-//       <button onClick={() => setView("group")}>Back</button>
-//     </div>
-//     </div>
-//   );
-// }
 import { useEffect, useState } from "react";
 
 export default function AddExpense({ groupId, setView}) {
@@ -193,7 +142,7 @@ export default function AddExpense({ groupId, setView}) {
         <button onClick={addExpense}>Add Expense</button>
         <p></p>
 <button onClick={() => setView("ledger")}>Ledger</button>
-        {/* // <button onClick={viewLedger}>Ledger</button> */}
+      
 
         {/* Ledger View */}
         <ul>
