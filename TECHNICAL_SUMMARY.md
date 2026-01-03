@@ -18,6 +18,13 @@
 
 ---
 
+### Mentor / Manager Guidance Received
+
+- Provided guidance on project scope, feature prioritization, and system design.
+- Assisted in debugging issues and suggested solutions for implementing expense split logic.
+- Advised on how to proceed with development.
+- Offered tips on technical implementation.
+
 ## AI Usage (Mandatory Declaration)
 
 AI tools (Google, Gemini,ChatGPT) were used for:

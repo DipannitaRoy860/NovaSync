@@ -15,6 +15,12 @@ The goal of the project is to understand full-stack development using the MERN s
 
 ---
 
+## Problem Statement
+
+Managing group expenses manually is time-consuming and error-prone. Individuals need a centralized platform to create expense groups, add members, log expenses with metadata, and split costs fairly among participants. The system should allow multiple splitting options (equal, exact amounts, percentage) and provide an organized ledger with a planned minimal-set settlement plan to determine who owes whom.
+
+Optional features include itemized expense entries, recurring expenses, visual charts, and in-app payment links.
+
 ## Tech Stack Used
 
 ** Frontend**
@@ -142,8 +148,7 @@ server.js
 
 ## Demo Video
 
-Demo video link:  
-**. **
+Watch the demo here: [Demo Video] (https://drive.google.com/file/d/1pjrAu3FtFa-HzvJQEYl2vNBFwdVSXzrP/view?usp=drivesdk)
 
 ---
 
