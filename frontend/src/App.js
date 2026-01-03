@@ -14,7 +14,7 @@ import './style.css';
 
 export default function App(){
   const[page,setPage]=useState("login");
-  const [selectedGroupId, setselectedGroupId]=useState(null);
+  const [groupId, setGroupId]=useState(null);
   return(
 <>
 {page!=="login" && page!=="register" && (<Navbar setPage={setPage}/> )}
@@ -23,7 +23,7 @@ export default function App(){
 {page==="dashboard" && <Dashboard setPage={setPage}/>}
 {page==="groups" && <Groups setPage={setPage}/>}
 {page==="profile" && <Profile setPage={setPage}/>}
-{page==="ledger" && <Ledger setPage={setPage}/>}
+{page==="ledger" && <Ledger setPage={setPage} />}
 {page==="addmember" && <AddMember setPage={setPage}/>}
 {page==="addgroup" && <AddGroup setPage={setPage}/>}
 {page==="addexpense" && <AddExpense setPage={setPage}/>}

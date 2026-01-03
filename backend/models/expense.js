@@ -1,8 +1,37 @@
 const mongoose = require("mongoose");
-const expenseSchema = new mongoose.Schema({
-  groupId: String,
-  paidBy:String,
-  amount:String,
-description:String
-});
-module.exports = mongoose.model("Expense", expenseSchema);
+
+const ExpenseSchema = new mongoose.Schema(
+  {
+  groupId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"Group",
+    required: true,
+  },
+  title:{
+    type: String,
+required:true,
+  },
+
+  amount:{
+    type: Number,
+    required: true,
+  },
+
+  splitType:{
+    type: String,
+    enum: ["equal", "exact", "percentage"],
+    required: true,
+  },
+
+  splits:[
+    {
+    name: String,
+    share: Number,
+  },
+],
+  //participants: [{name: String, share: Number}],
+},
+{timestamps: true}
+);
+
+module.exports = mongoose.model("Expense", ExpenseSchema);

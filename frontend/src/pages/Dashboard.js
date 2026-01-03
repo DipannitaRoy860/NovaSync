@@ -2,8 +2,9 @@
 export default function Dashboard({setPage}){
   return(
     <div className="page">
-      <h1>Dashboard</h1>
+      
       <div className="card">
+        <h1>Dashboard</h1>
         <p>Manage Your Groups</p>
         <button onClick={()=>setPage("groups")}>Go to Groups</button>
       

@@ -60,7 +60,7 @@ console.log("Finalize response",data);
   return (
     <div className="page">
       <div className="card">
-      <h3>Add Members</h3>
+      <h2>Add Members</h2>
 
       <input
         placeholder="Member Name"

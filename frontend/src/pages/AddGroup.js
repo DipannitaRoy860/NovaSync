@@ -39,7 +39,7 @@ console.log(data);
   return (
     <div className="page">
       <div className="card">
-      <h3>Create Group</h3>
+      <h2>Create Group</h2>
 
       <input
         placeholder="Group Name"

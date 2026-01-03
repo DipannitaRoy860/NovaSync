@@ -12,85 +12,34 @@
 //     </div>
 //   );
 // }
-// import { useEffect, useState } from "react";
-
-// export default function Ledger({ setView, groupId }) {
-//   const [expenses, setExpenses] = useState([]);
-
-//   // const loadLedger = async () => {
-//   //   if (!groupId) return alert("No group selected");
-//   //   const res = await fetch(`http://localhost:5000/api/expenses/ledger/${groupId}`);
-//   //   const data = await res.json();
-//   //   if (data.success) setExpenses(data.expenses);
-//   // };
-
-//   useEffect(() => {
-//     fetch(`http://localhost:5000/api/expenses/ledger/${groupId}`);
-//     .then(res =>res.json());
-//     loadLedger();
-//   }, [groupId]);
-
-//   return (
-//     <div className="page">
-//       <div className="card">
-//         <h2>Ledger</h2>
-//         <ul>
-//           {expenses.map((e) => (
-//             <li key={e._id}>
-//               {e.title} - ₹{e.amount}
-//             </li>
-//           ))}
-//         </ul>
-//         <button onClick={() => setPage("group")}>Back to Group</button>
-//         <button onClick={() => setPage("settlement")}>Go to Settlement</button>
-//       </div>
-//     </div>
-//   );
-// }
 import { useEffect, useState } from "react";
 
-export default function Ledger({ groupId, setView }) {
+export default function Ledger({ groupId, setPage }) {
   const [expenses, setExpenses] = useState([]);
-
-  useEffect(() => {
-    if (!groupId) return;
-
-    fetch(`http://localhost:5000/api/expenses/ledger/${groupId}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          setExpenses(data.expenses);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [groupId]);
-
+  useEffect(()=>{
+    loadLedger();
+  },[]);
+const loadLedger = async () => {
+  const res = await fetch (`http://localhost:5000/api/expenses/ledger/${groupId}`);
+  const data = await res.json ();
+  setExpenses(data.expenses || []);
+}
   return (
     <div className="page">
       <div className="card">
-        <h3>Ledger</h3>
-
-        {expenses.length === 0 && <p>No expenses yet</p>}
-
-        <ul>
-          {expenses.map((e) => (
-            <li key={e._id}>
-              {e.title} – ₹{e.amount}
-            </li>
-          ))}
-        </ul>
-
-        <button onClick={() => setView("settlement")}>
-          Go to Settlement
-        </button>
-
-        <button onClick={() => setView("addExpense")}>
-          Back
-        </button>
+       { expenses.map((e)=>(
+        <div key={e._id} style ={{marginBottom:"15px"}}>
+          <h4>{e.title}-₹{e.amount}</h4>
+          <ul>
+            {e.participants.map((p,i)=>(
+              <li key={i}>{p.name} owes ₹ {p.share}</li>
+            ))}
+          </ul>
+          </div>
+       ))}
+       <button onClick={()=> setPage("settlement")}>Settlement</button>
+       <p></p>
+       <button onClick ={()=> setPage("groups")}>Back</button>
       </div>
     </div>
   );

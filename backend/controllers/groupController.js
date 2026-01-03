@@ -66,6 +66,23 @@ const group = await Group.findById(groupId);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+// Get group by ID (for AddExpense.js)
+exports.getGroup = async (req, res) => {
+  try {
+    const { id } = req.params;   // matches /api/groups/:id
+    const group = await Group.findById(id);
+
+    if (!group) {
+      return res.status(404).json({ success: false, message: "Group not found" });
+    }
+
+    // Send back members so frontend can use them
+    res.json({ success: true, members: group.members });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 // exports.finalizeGroup = async (req, res) => {
 //   console.log("FINALIZE HIT", req.body);
 

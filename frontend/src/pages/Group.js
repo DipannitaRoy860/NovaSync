@@ -67,7 +67,7 @@ import AddGroup from "./AddGroup";
 import AddMember from "./AddMember";
 import AddExpense from "./AddExpense";
 
-export default function Grou() {
+export default function Group() {
   const [view, setView] = useState("group"); 
   const [groupId, setGroupId] = useState(null);
 
@@ -113,9 +113,7 @@ export default function Grou() {
       {view === "addExpense" && (
         <AddExpense groupId={groupId} setView={setView} />
       )}
-      {view ==="ledger" && (
-        <ledger groupId={groupId} setView={setView}/>
-      )}
+    
       </div>
     </div>
   );
